@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>🎬 Movie Gallery</h1>
+    <p class="subtitle">Discover Amazing Movies</p>
+</header>
+
+<div class="movie-grid">
+    {% for movie in movies %}
+    <div class="movie-card" onclick="location.href='/movie/{{ movie.id }}'">
+        <img src="{{ movie.image }}" alt="{{ movie.title }}" class="movie-poster">
+        <div class="movie-info">
+            <h3 class="movie-title">{{ movie.title }}</h3>
+            <p class="movie-genre">{{ movie.genre }}</p>
+            <p class="movie-year">{{ movie.year }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Code - Movie Magic</title>
+  <style>
+    .bg-image {
+      background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-8Hxb6RiaoEmQFgI0DATMDDhXgtx4bz.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+      min-height: 100vh;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .login-box {
+      background-color: rgba(255, 255, 204, 0.95);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .login-box label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .login-box input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .login-box button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background-color: #0056b3;
+    }
+
+    .links {
+      margin-top: 20px;
+    }
+
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #dc3545;
+      margin-bottom: 15px;
+      font-weight: bold;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .info {
+      background-color: #d1ecf1;
+      border: 1px solid #bee5eb;
+      color: #0c5460;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="login-container">
+    <form method="POST" class="login-box">
+      <h2>🔐 Verify Reset Code</h2>
+      
+      <div class="info">
+        📧 We've sent a 4-digit verification code to your email address. Please enter it below.
+      </div>
+      
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+      
+      <label>Enter 4-digit code:</label>
+      <input type="text" name="code" maxlength="4" pattern="[0-9]{4}" required placeholder="1234">
+      
+      <button type="submit">Verify Code</button>
+      
+      <div class="links">
+        <a href="{{ url_for('forgot') }}">← Resend Code</a><br>
+        <a href="{{ url_for('login') }}">← Back to Login</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

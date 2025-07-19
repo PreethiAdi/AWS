@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Movie Magic</title>
+  <style>
+    .bg-image {
+      background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-8Hxb6RiaoEmQFgI0DATMDDhXgtx4bz.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: brightness(0.4);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      color: white;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-brand {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Container - SHAPE AND DIMENSIONS CHANGED */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 3rem; /* Increased padding */
+      background-color: rgba(255, 255, 204, 0.95);
+      border-radius: 25px; /* More rounded corners */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+      color: #333;
+    }
+
+    .admin-section {
+      margin-bottom: 3rem;
+    }
+
+    .admin-section h2 {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+    }
+
+    .booking-card, .movie-card {
+      background: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: #007bff;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <nav class="navbar">
+    <div class="nav-brand">🎬 Movie Magic Admin</div>
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('movies_page') }}">Movies</a>
+      <a href="{{ url_for('admin') }}">Admin</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>🎯 Admin Dashboard</h1>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">{{ movies|length }}</div>
+        <div>Total Movies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ bookings|length }}</div>
+        <div>Total Bookings</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">₹{{ bookings|sum(attribute='total_price') or 0 }}</div>
+        <div>Total Revenue</div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h2>📊 Recent Bookings</h2>
+      {% if bookings %}
+        {% for booking in bookings %}
+        <div class="booking-card">
+          <h4>{{ booking.movie }}</h4>
+          <p><strong>Customer:</strong> {{ booking.name }}</p>
+          <p><strong>Email:</strong> {{ booking.user }}</p>
+          <p><strong>Tickets:</strong> {{ booking.tickets }}</p>
+          <p><strong>Total:</strong> ₹{{ booking.total_price }}</p>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>No bookings yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="admin-section">
+      <h2>🎬 Movie Management</h2>
+      {% for movie in movies %}
+      <div class="movie-card">
+        <h4>{{ movie.name }}</h4>
+        <p><strong>Time:</strong> {{ movie.time }}</p>
+        <p><strong>Price:</strong> ₹{{ movie.price }}</p>
+        <p><strong>Rating:</strong> {{ movie.rating }}/5</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

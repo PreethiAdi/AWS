@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Successful - Movie Magic</title>
+  <style>
+    .bg-image {
+      background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-8Hxb6RiaoEmQFgI0DATMDDhXgtx4bz.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+      min-height: 100vh;
+    }
+
+    .success-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .success-box {
+      background-color: rgba(255, 255, 204, 0.95);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+
+    .success-box h2 {
+      color: #28a745;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .booking-details {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #28a745;
+    }
+
+    .booking-details h3 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    .booking-details p {
+      margin: 8px 0;
+      color: #333;
+      font-size: 1.1rem;
+    }
+
+    .success-box .btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      margin: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .success-box .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .success-box .btn-secondary {
+      background-color: #6c757d;
+    }
+
+    .success-box .btn-secondary:hover {
+      background-color: #545b62;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="success-container">
+    <div class="success-box">
+      <div class="success-icon">✅</div>
+      <h2>Booking Successful!</h2>
+      
+      <div class="booking-details">
+        <h3>🎬 {{ movie.name }}</h3>
+        <p><strong>👤 Name:</strong> {{ name }}</p>
+        <p><strong>🎫 Tickets:</strong> {{ tickets }}</p>
+        <p><strong>⏰ Show Time:</strong> {{ movie.time }}</p>
+        <p><strong>💰 Total Amount:</strong> ₹{{ total_price }}</p>
+        <p><strong>⭐ Rating:</strong> {{ movie.rating }}/5</p>
+      </div>
+      
+      <p style="color: #666; margin: 20px 0;">
+        🎉 Thank you for booking with Movie Magic! <br>
+        A confirmation email has been sent to your registered email address.
+      </p>
+      
+      <div>
+        <a href="{{ url_for('movies_page') }}" class="btn">🎬 Book More Movies</a>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">🏠 Go Home</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

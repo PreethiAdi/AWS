@@ -1,0 +1,170 @@
+/* Background Image Fullscreen */
+.bg-image {
+  /* THIS IS THE CORRECT POPCORN IMAGE URL */
+  background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-ZkZKSMgTe928JgADxwQTB7eQp7o55B.jpeg")
+    no-repeat center center fixed;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: brightness(0.6);
+}
+
+/* Fallback gradient background if image doesn't load */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Login Container Centered */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Login Box Styling */
+.login-box {
+  background-color: rgba(255, 255, 204, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.login-box h2 {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 24px;
+}
+
+.login-box h3 {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.login-box p {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Form Inputs */
+.login-box input[type="email"],
+.login-box input[type="password"],
+.login-box input[type="text"],
+.login-box input[type="tel"],
+.login-box input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Checkbox and Remember Me */
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.remember input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* Submit Button */
+.login-box button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Links */
+.links {
+  margin-top: 20px;
+}
+
+.links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Error Message */
+.error {
+  color: #dc3545;
+  margin-bottom: 15px;
+  font-weight: bold;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Success Info */
+.success-info {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.success-info p {
+  margin: 5px 0;
+  color: #155724;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+
+  .login-box h2 {
+    font-size: 20px;
+  }
+}

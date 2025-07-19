@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Ticket - Movie Magic</title>
+  <style>
+    .bg-image {
+      background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-8Hxb6RiaoEmQFgI0DATMDDhXgtx4bz.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+      min-height: 100vh;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Login Box - SHAPE AND DIMENSIONS CHANGED */
+    .login-box {
+      background-color: rgba(255, 255, 204, 0.95); /* Changed to light yellow */
+      padding: 50px; /* Increased padding */
+      border-radius: 30px; /* More rounded corners */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+      width: 100%;
+      max-width: 500px; /* Slightly wider */
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .login-box h3 {
+      color: #007bff;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .login-box p {
+      color: #666;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .movie-info {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border-left: 4px solid #007bff;
+    }
+
+    .login-box label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .login-box input[type="text"],
+    .login-box input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .login-box button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background-color: #218838;
+    }
+
+    .links {
+      margin-top: 20px;
+    }
+
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #dc3545;
+      margin-bottom: 15px;
+      font-weight: bold;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="login-container">
+    <form method="POST" class="login-box">
+      <h2>🎫 Book Ticket</h2>
+      
+      <div class="movie-info">
+        <h3>{{ movie.name }}</h3>
+        <p><strong>⏰ Time:</strong> {{ movie.time }}</p>
+        <p><strong>💰 Price:</strong> ₹{{ movie.price }} per ticket</p>
+        <p><strong>⭐ Rating:</strong> {{ movie.rating }}/5</p>
+      </div>
+      
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+      
+      <label>Your Name:</label>
+      <input type="text" name="name" required>
+      
+      <label>Number of Tickets:</label>
+      <input type="number" name="tickets" min="1" max="10" required>
+      
+      <button type="submit">🎬 Book Tickets</button>
+      <div class="links">
+        <a href="{{ url_for('movies_page') }}">← Back to Movies</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

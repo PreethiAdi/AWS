@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ movie.title }} - Movie Gallery{% endblock %}
+
+{% block content %}
+<a href="/" class="back-btn">← Back to Gallery</a>
+
+<div class="movie-detail">
+    <div class="detail-content">
+        <div>
+            <img src="{{ movie.image }}" alt="{{ movie.title }}" class="detail-poster">
+        </div>
+        <div class="detail-info">
+            <h2>{{ movie.title }}</h2>
+            <p class="detail-meta"><strong>Genre:</strong> {{ movie.genre }}</p>
+            <p class="detail-meta"><strong>Year:</strong> {{ movie.year }}</p>
+            <p class="detail-meta"><strong>Description:</strong> 
+                {% if movie.title == 'Inception' %}
+                A mind-bending thriller about dream infiltration and reality manipulation.
+                {% elif movie.title == 'VIP' %}
+                A heartwarming story about an aspiring engineer and his journey to success.
+                {% elif movie.title == 'Dear Comrade' %}
+                A passionate love story that explores the complexities of relationships.
+                {% elif movie.title == 'Orange' %}
+                A romantic drama about love, sacrifice, and second chances.
+                {% elif movie.title == 'Three' %}
+                A beautiful tale of love and relationships with emotional depth.
+                {% elif movie.title == 'Arya 2' %}
+                A romantic action film about unconditional love and friendship.
+                {% elif movie.title == 'Varsham' %}
+                A classic romantic drama that became a milestone in Telugu cinema.
+                {% else %}
+                An amazing movie that will captivate your heart and mind.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
