@@ -4,7 +4,7 @@ from botocore.exceptions import ClientError
 import random
 
 app = Flask(__name__)
-app.secret_key = 'movie-magic-aws'
+app.secret_key = '9b1e18a5033c3ae4d8b7c5b98c67e3a4a26dfc2ad48675b5ed4027c36e1b249f'
 
 # ---------------- AWS Setup ----------------
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
@@ -13,7 +13,7 @@ sns = boto3.client('sns', region_name='us-east-1')
 users_table = dynamodb.Table('Users')
 bookings_table = dynamodb.Table('Bookings')
 
-SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:123456789012:BookingTopic'  # Replace with your SNS topic ARN
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:600627329180:BookingRequestNotifications'  # Replace with your SNS topic ARN
 
 # ---------------- Routes ----------------
 
