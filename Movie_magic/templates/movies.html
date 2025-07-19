@@ -1,282 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movies - Movie Magic</title>
-<style>
-  /* Background Image Fullscreen - UPDATED with new background */
-  .bg-image {
-    background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-8Hxb6RiaoEmQFgI0DATMDDhXgtx4bz.jpeg") no-repeat center center fixed;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    filter: brightness(0.6);
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movies - Movie Magic</title>
+  <style>
+    .bg-image {
+      background: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/movie_bg.jpg-ZkZKSMgTe928JgADxwQTB7eQp7o55B.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
 
-  /* Navigation */
-  .navbar {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-  }
-
-  .nav-brand {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-  }
-
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.95);
-    position: relative;
-    z-index: 1;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .container h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #333;
-    font-size: 2.5rem;
-  }
-
-  /* Search Bar */
-  .search-bar {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .search-bar form {
-    display: inline-flex;
-    gap: 10px;
-  }
-
-  .search-bar input {
-    padding: 12px;
-    border: 2px solid #007bff;
-    border-radius: 8px;
-    width: 300px;
-    font-size: 16px;
-  }
-
-  .search-bar button {
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-
-  .search-bar button:hover {
-    background-color: #0056b3;
-  }
-
-  /* Movies Grid */
-  .movies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: 2rem;
-    padding: 1rem 0;
-  }
-
-  .movie-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-  }
-
-  .movie-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    border-color: #007bff;
-  }
-
-  .movie-poster {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-  }
-
-  .movie-card:hover .movie-poster {
-    transform: scale(1.05);
-  }
-
-  .movie-info {
-    padding: 1.5rem;
-  }
-
-  .movie-info h3 {
-    margin: 0 0 10px 0;
-    color: #333;
-    font-size: 1.4rem;
-    font-weight: bold;
-  }
-
-  .movie-info p {
-    margin: 8px 0;
-    color: #666;
-    font-size: 1rem;
-  }
-
-  .movie-genre {
-    color: #007bff;
-    font-weight: bold;
-    font-size: 0.9rem;
-  }
-
-  .book-btn {
-    display: inline-block;
-    background: linear-gradient(45deg, #28a745, #20c997);
-    color: white;
-    padding: 12px 24px;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-top: 15px;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .book-btn:hover {
-    background: linear-gradient(45deg, #218838, #1ea085);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  /* No movies found message */
-  .no-movies {
-    text-align: center;
-    padding: 3rem;
-    color: #666;
-    font-size: 1.2rem;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
     .navbar {
-      flex-direction: column;
-      gap: 1rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-brand {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
     .nav-links {
-      gap: 1rem;
+      display: flex;
+      gap: 2rem;
     }
 
-    .search-bar input {
-      width: 250px;
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
 
-    .movies-grid {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-      gap: 1.5rem;
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
     }
 
     .container {
-      padding: 1rem;
-      margin: 1rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      position: relative;
+      z-index: 1;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .container h1 {
-      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
     }
-  }
-</style>
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: #0056b3;
+    }
+
+    .movies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .movie-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .movie-poster {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .movie-info {
+      padding: 1rem;
+    }
+
+    .movie-info h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+      font-size: 1.25rem;
+    }
+
+    .movie-info p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .book-btn {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background-color: #218838;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .search-bar input {
+        width: 200px;
+      }
+
+      .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .container {
+        padding: 1rem;
+        margin: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="bg-image"></div>
+
   <nav class="navbar">
     <div class="nav-brand">🎬 Movie Magic</div>
     <div class="nav-links">
       <a href="{{ url_for('home') }}">Home</a>
       <a href="{{ url_for('movies_page') }}">Movies</a>
       <a href="{{ url_for('admin') }}">Admin</a>
-      <a href="{{ url_for('contact_us') }}">Contact</a>
-      <a href="{{ url_for('help_page') }}">Help</a>
       <a href="{{ url_for('logout') }}">Logout</a>
     </div>
   </nav>
 
   <div class="container">
-    <h1>🎬 Available Movies</h1>
-    
+    <h1>Available Movies</h1>
+
     <div class="search-bar">
-      <form method="GET">
-        <input type="text" name="q" placeholder="Search movies by name or genre..." value="{{ request.args.get('q', '') }}">
-        <button type="submit">🔍 Search</button>
-      </form>
+      <input type="text" id="searchInput" placeholder="Search movies...">
+      <button onclick="filterMovies()">Search</button>
     </div>
 
-    {% if movies %}
-    <div class="movies-grid">
-      {% for movie in movies %}
-      <div class="movie-card">
-        <img src="{{ movie.image }}" alt="{{ movie.name }}" class="movie-poster" loading="lazy">
+    <div class="movies-grid" id="movieGrid">
+      {% set movies = [
+        (1, "Animal", "6:00 PM", 150, 4.8, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/animal.jpg-F4j0Ros35NLeZIc579D1MkyKEa9nOn.jpeg"),
+        (2, "Devara", "3:30 PM", 180, 4.7, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/devara.jpg-Mtw6HskL11G2Kdd9O0KZJ4IMMAAq5G.jpeg"),
+        (3, "Fidaa", "1:00 PM", 160, 4.6, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fidaa.jpg-4ZBKfGQPMEDv88sleQlXehLnADe2OA.jpeg"),
+        (4, "Inception", "5:00 PM", 200, 4.9, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inception.jpg-jeoFITtgHCkARSYtqzS56A0AVD2ulh.jpeg"),
+        (5, "Orange", "11:00 AM", 140, 4.5, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/orange.jpg-GXC0CLM5byxt0yMGz1m1qoponmHsHa.jpeg"),
+        (6, "Pushpa", "8:00 PM", 190, 4.4, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pushpa.jpg-jFXViTQhSrNObtbvMjgkjzbTGtONOb.jpeg"),
+        (7, "Remo", "2:30 PM", 170, 4.6, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/remo.jpg-vDzS2cPf2UK89LAPJZDxNruD0hPm76.jpeg"),
+        (8, "Sakhi", "10:00 AM", 160, 4.3, "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sakhi.jpg-tRCIG6nu4lNZCs4sSZD3MXRyVfcVKv.jpeg")
+      ] %}
+      {% for id, name, time, price, rating, image in movies %}
+      <div class="movie-card" data-name="{{ name | lower }}">
+        <img src="{{ image }}" alt="{{ name }}" class="movie-poster">
         <div class="movie-info">
-          <h3>{{ movie.name }}</h3>
-          <p class="movie-genre">{{ movie.genre }} ({{ movie.year }})</p>
-          <p class="movie-time">⏰ {{ movie.time }}</p>
-          <p class="movie-price">💰 ₹{{ movie.price }} per ticket</p>
-          <p class="movie-rating">⭐ {{ movie.rating }}/5</p>
-          <a href="{{ url_for('book_ticket', id=movie.id) }}" class="book-btn">🎫 Book Now</a>
+          <h3>{{ name }}</h3>
+          <p>⏰ {{ time }}</p>
+          <p>💰 ₹{{ price }}</p>
+          <p>⭐ {{ rating }}/5</p>
+          <a href="{{ url_for('book_ticket', id=id) }}" class="book-btn">Book Now</a>
         </div>
       </div>
       {% endfor %}
     </div>
-    {% else %}
-    <div class="no-movies">
-      <h3>🔍 No movies found</h3>
-      <p>Try searching with different keywords or <a href="{{ url_for('movies_page') }}">view all movies</a></p>
-    </div>
-    {% endif %}
   </div>
+
+  <script>
+    function filterMovies() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const movies = document.querySelectorAll('.movie-card');
+
+      movies.forEach(card => {
+        const name = card.getAttribute('data-name');
+        card.style.display = name.includes(query) ? 'block' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
